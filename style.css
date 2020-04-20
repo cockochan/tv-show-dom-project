@@ -20,7 +20,9 @@ html, body {
   color: rgb(255, 217, 2);
   font-size: x-small;
   font-weight: lighter;
-  margin:2px;
+  margin-left:10px;
+  margin-right:10px;
+  margin-top:2px;
 }
 #root {
   width: 100%;
@@ -32,34 +34,43 @@ html, body {
 }
 .episName{
   font-size: large;
-  margin:2px;
+  margin-top:2px;
+  margin-bottom:10px;
+  margin-left:10px;
+  margin-right:10px;
   color:white;
 }
 .img{
   width:100%;
-
   align-self: flex-end;
 }
 .episode{
   color: rgb(255, 217, 2);
   font-size:small;
   margin-top:2px;
-  margin-bottom:10px;
+  margin-left:10px;
+  margin-right:10px;
 }
   .season{
   color: rgb(0, 0, 0);
   font-family: Impact;
   font-size:large;
   font-weight:bolder;
-  margin:5px;
-  padding-left:5px;
+  margin-left:-13px;
+  margin-top:5px;
+  margin-right:10px;
+  padding-left:10px;
   background-image: linear-gradient(to bottom right,  rgb(99, 86, 15),rgb(255, 238, 0),  rgb(133, 91, 1),rgb(223, 208, 7));
-  width:20%;
+  width:25%;
+  }
 
 .para{
+  margin-left:10px;
+  margin-right:10px;
   color:white;
   text-align: justify;
   margin-top:5px;
+  hyphens:auto;
 }
 
 
