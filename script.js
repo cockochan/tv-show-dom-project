@@ -21,7 +21,7 @@ function makePageForEpisodes(episodeList) {
     var season = document.createElement("h1");
     tile.appendChild(season);
     season.className = "season";
-    season.textContent = `season:${element.season}`;
+    season.textContent = `SEASON:${element.season}`;
     
     
 

@@ -48,17 +48,18 @@ html, body {
 }
   .season{
   color: rgb(0, 0, 0);
-  font-size:small;
+  font-family: Impact;
+  font-size:large;
   font-weight:bolder;
   margin:5px;
   padding-left:5px;
   background-image: linear-gradient(to bottom right,  rgb(99, 86, 15),rgb(255, 238, 0),  rgb(133, 91, 1),rgb(223, 208, 7));
   width:20%;
-}
 
 .para{
   color:white;
   text-align: justify;
+  margin-top:5px;
 }
 
 
