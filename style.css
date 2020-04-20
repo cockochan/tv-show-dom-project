@@ -4,8 +4,9 @@
 }
 .tile {
   display: block;
-  width: 25vw;
+  width:25%;
   text-justify: auto;
+  padding: 15 px;
 }
 .id {
   color: green;
@@ -13,4 +14,9 @@
 .root {
   display: flex;
   flex-wrap: wrap;
+}
+
+.img{
+  width:80%;
+  align-self:bottom;
 }

@@ -18,7 +18,18 @@ function makePageForEpisodes(episodeList) {
     id.className = "id";
     var episName = document.createElement("h1");
     tile.appendChild(episName);
-    episName.textContent = `Id:${element.name}`;
+    episName.textContent = `${element.name}`;
+    var season = document.createElement("p");
+    tile.appendChild(season);
+    season.textContent = `season:${element.season}`;
+    var episode = document.createElement("p");
+    tile.appendChild(episode);
+    season.textContent = `episode:${element.number}`;
+    var img = document.createElement("img");
+    tile.appendChild(img);
+    img.src = element.image.medium;
+    console.log(element.image.medium)
+    img.className = "img";
   });
   console.log(rootElem);
 }
