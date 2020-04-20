@@ -12,27 +12,36 @@ function makePageForEpisodes(episodeList) {
     var tile = document.createElement("section");
     tile.className = "tile";
     rootElem.appendChild(tile);
+
+   
+
+     let tileHead =  document.createElement("div");
+     tileHead.className = "tileHead";
+     tile.appendChild(tileHead);
     
+    let plate =  document.createElement("div");
+    tileHead.appendChild(plate);
+    plate.className = "plate";
+    
+  
     var season = document.createElement("h1");
-    tile.appendChild(season);
+    plate.appendChild(season);
     season.className = "season";
     season.textContent = `SEASON:${element.season}`;
     
-    
     var id = document.createElement("h1");
-    tile.appendChild(id);
+    plate.appendChild(id);
     id.textContent = `# ${element.id}`;
     id.className = "id";
 
 
-
     var episName = document.createElement("h1");
-    tile.appendChild(episName);
+    plate.appendChild(episName);
     episName.className = "episName";
     episName.textContent = `${element.name}`;
     
     var episode = document.createElement("p");
-    tile.appendChild(episode);
+    plate.appendChild(episode);
     episode.className = "episode";
     episode.textContent =`episode:${element.number}`;
 
