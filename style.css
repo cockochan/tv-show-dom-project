@@ -1,3 +1,16 @@
 #root {
   color: red;
+  width: 100%;
+}
+.tile {
+  display: block;
+  width: 25vw;
+  text-justify: auto;
+}
+.id {
+  color: green;
+}
+.root {
+  display: flex;
+  flex-wrap: wrap;
 }
