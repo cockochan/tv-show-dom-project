@@ -8,12 +8,33 @@ function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
   rootElem.className = "root";
 
+  var nav = document.createElement("nav");
+  nav.className = "nav";
+  rootElem.appendChild(nav);
+  // let filteredEpisodeList =  episodeList;
+  let  goFilter = function(){
+    episodeList = episodeList.filter(el=>el.summary.includes(what));
+    return episodeList;
+     };
+    
+  let search = document.createElement("INPUT");
+  search.setAttribute("type", "search");
+  search.className = "search";
+  nav.appendChild(search);
+  let what = search.value;
+  search.addEventListener("search", goFilter);
+
+  console.log(what);
+
   episodeList.forEach((element) => {
     var tile = document.createElement("section");
     tile.className = "tile";
     rootElem.appendChild(tile);
 
-   
+    var season = document.createElement("h1");
+    tile.appendChild(season);
+    season.className = "season";
+    season.textContent = `SEASON:${element.season}`;
 
      let tileHead =  document.createElement("div");
      tileHead.className = "tileHead";
@@ -24,10 +45,7 @@ function makePageForEpisodes(episodeList) {
     plate.className = "plate";
     
   
-    var season = document.createElement("h1");
-    plate.appendChild(season);
-    season.className = "season";
-    season.textContent = `SEASON:${element.season}`;
+    
     
     var id = document.createElement("h1");
     plate.appendChild(id);
@@ -54,9 +72,7 @@ function makePageForEpisodes(episodeList) {
     var img = document.createElement("img");
     tile.appendChild(img);
     img.src = element.image.medium;
-    console.log(element.image.medium)
     img.className = "img";
   });
-  console.log(rootElem);
 }
 window.onload = setup;
