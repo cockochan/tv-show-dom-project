@@ -8,25 +8,33 @@ function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
   rootElem.className = "root";
 
+
   var nav = document.createElement("nav");
   nav.className = "nav";
   rootElem.appendChild(nav);
-  // let filteredEpisodeList =  episodeList;
-  let  goFilter = function(){
-    episodeList = episodeList.filter(el=>el.summary.includes(what));
-    return episodeList;
-     };
-    
+
   let search = document.createElement("INPUT");
   search.setAttribute("type", "search");
   search.className = "search";
   nav.appendChild(search);
-  let what = search.value;
-  search.addEventListener("search", goFilter);
 
-  console.log(what);
 
-  episodeList.forEach((element) => {
+  // let filteredEpisodeList =  episodeList;
+  let  goFilter = function(){
+  let searchQueryText = search.value;
+   let  filEpisodeList = episodeList.filter(el=>el.summary.includes(searchQueryText));
+    return filEpisodeList;
+   
+     };
+     goFilter();
+    
+
+  
+  search.addEventListener("search", goFilter());
+
+  console.log(filEpisodeList);
+
+  filEpisodeList .forEach((element) => {
     var tile = document.createElement("section");
     tile.className = "tile";
     rootElem.appendChild(tile);
