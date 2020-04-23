@@ -13,28 +13,17 @@ function makePageForEpisodes(episodeList) {
   nav.className = "nav";
   rootElem.appendChild(nav);
 
-  let search = document.createElement("INPUT");
-  search.setAttribute("type", "search");
-  search.className = "search";
-  nav.appendChild(search);
+ 
+
 
 
   // let filteredEpisodeList =  episodeList;
-  let  goFilter = function(){
-  let searchQueryText = search.value;
-   let  filEpisodeList = episodeList.filter(el=>el.summary.includes(searchQueryText));
-    return filEpisodeList;
-   
-     };
-     goFilter();
-    
 
-  
-  search.addEventListener("search", goFilter());
+     
 
-  console.log(filEpisodeList);
-
-  filEpisodeList .forEach((element) => {
+  let build = function(){
+    filEpisodeList.forEach((element) => {
+      console.log(filEpisodeList);
     var tile = document.createElement("section");
     tile.className = "tile";
     rootElem.appendChild(tile);
@@ -82,5 +71,22 @@ function makePageForEpisodes(episodeList) {
     img.src = element.image.medium;
     img.className = "img";
   });
+};
+let searchBox  = document.createElement("INPUT");
+searchBox.setAttribute("type", "search");
+searchBox.className = "searchBox ";
+nav.appendChild(searchBox);
+let filEpisodeList = [];
+searchBox.addEventListener('keyup', event => {
+  // get the current searchBox value
+  const searchValue = event.target.value
+
+  // then do something with it
+  filEpisodeList = episodeList.filter(el=>el.summary.includes(searchValue));
+
+  build(filEpisodeList);
+  console.log(searchValue);
+
+});
 }
 window.onload = setup;
