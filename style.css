@@ -21,12 +21,19 @@ html, body {
   flex-wrap: nowrap;
   flex-direction:column;
   width:30%;
+
   text-justify: auto;
   padding: 5px;
   background-image: linear-gradient(to bottom right, rgb(36, 36, 36), rgb(0, 0, 0));
   margin:5px;
   justify-content: stretch;
   justify-content: space-between;
+}
+  
+@media only screen and (max-width: 500px){
+  .tile {
+  width:100%;
+}
 }
 .id {
   color: rgb(255, 217, 2);
