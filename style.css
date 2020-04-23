@@ -5,10 +5,19 @@ html, body {
   color: rgb(255, 217, 2);
   width: 100%;
 }
+.series {
+  color: rgb(255, 217, 2);
+  width: 100%;
+  display:flex;
+  flex-direction:row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
 .tile {
   display: flex;
   flex-direction:column;
-  width:31%;
+  width:30%;
   text-justify: auto;
   padding: 5px;
   background-image: linear-gradient(to bottom right, rgb(36, 36, 36), rgb(0, 0, 0));
