@@ -17,11 +17,11 @@ function makePageForEpisodes(episodeList) {
 
   let build = function(filEpisodeList){
     filEpisodeList.forEach((element) => {
-      console.log(filEpisodeList);
     var tile = document.createElement("section");
     tile.className = "tile";
     series.appendChild(tile);
- 
+      
+    
 
   // let filteredEpisodeList =  episodeList;
 
@@ -68,9 +68,29 @@ function makePageForEpisodes(episodeList) {
     tile.appendChild(img);
     img.src = element.image.medium;
     img.className = "img";
+    //generate episode code
+   function padToTwo(number) {
+      if (number<=9999) { number = ("000"+number).slice(-2); }
+      return number;
+    };
+    let padEpisode = padToTwo(element.number);
+    let padSeason = padToTwo(element.season);
+    let episCode = `S${padSeason}E${padEpisode}`;
+    var code = document.createElement("h1");
+    plate.appendChild(code);
+    code.className = "code";
+    code.textContent = episCode;
+    
   });
+  display.textContent = "";
+  display.textContent = `showing ${filEpisodeList.length} episodes`;
 
 };
+  // show how many episodes are displayed;
+  var display = document.createElement("p");
+  display.className = "display";
+  nav.appendChild(display);
+ 
 var series= document.createElement("div");
 series.className = "series";
 rootElem.appendChild(series);
@@ -81,6 +101,7 @@ let searchBox  = document.createElement("INPUT");
 searchBox.setAttribute("type", "search");
 searchBox.className = "searchBox ";
 nav.appendChild(searchBox);
+searchBox.placeholder = "Type search here..";
 // let filEpisodeList = [];
 searchBox.addEventListener('keyup', event => {
   // get the current searchBox value
@@ -90,7 +111,6 @@ searchBox.addEventListener('keyup', event => {
   filEpisodeList = episodeList.filter(el=>el.summary.includes(searchValue));
   series.textContent = "";
   build(filEpisodeList);
-  console.log(searchValue);
 
 });
 

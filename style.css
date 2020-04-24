@@ -16,6 +16,14 @@ html, body {
   justify-content: space-evenly;
 }
 
+.code{
+  color: rgb(255, 217, 2);
+  font-size: x-small;
+  font-weight: lighter;
+  margin-left:10px;
+  margin-right:10px;
+  margin-top:2px;
+  }
 .tile {
   display: flex;
   flex-wrap: nowrap;
@@ -51,18 +59,17 @@ html, body {
   background-color: black;
   justify-content: space-evenly;
 }
-.search{
-  display:inline-flex;
-  width:100%;
-  min-height: 20px;
+.searchBox{
+  margin-left:5%;
   background-color:white;
   margin-top:25px;
 }
 .nav{
-  display:inline-flex;
+  display:flex;
   width:100%;
   padding:15px;
   justify-content: flex-end;
+  align-items: baseline;
   
 }
 .tileHead{
