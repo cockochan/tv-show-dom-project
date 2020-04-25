@@ -13,15 +13,22 @@ function makePageForEpisodes(episodeList) {
   rootElem.appendChild(nav);
 
   var filEpisodeList = episodeList;
+  // create dropdown list
+  var dropDownContainer = document.createElement("div");
+  nav.appendChild(dropDownContainer);
+  dropDownContainer.className="dropDownContainer";
+  var dropDown = document.createElement("SELECT");
+  dropDownContainer.appendChild(dropDown);
+  dropDown.className="dropDown";
+  
  
-
+// for each stuff
   let build = function(filEpisodeList){
     filEpisodeList.forEach((element) => {
     var tile = document.createElement("section");
     tile.className = "tile";
     series.appendChild(tile);
-      
-    
+  
 
   // let filteredEpisodeList =  episodeList;
 
@@ -80,7 +87,10 @@ function makePageForEpisodes(episodeList) {
     plate.appendChild(code);
     code.className = "code";
     code.textContent = episCode;
-    
+    //append dropdown items
+  var option = document.createElement("option");
+  option.text = `${episCode} - ${element.name}`;
+  dropDown.add(option);
   });
   display.textContent = "";
   display.textContent = `showing ${filEpisodeList.length} episodes`;
@@ -89,11 +99,18 @@ function makePageForEpisodes(episodeList) {
   // show how many episodes are displayed;
   var display = document.createElement("p");
   display.className = "display";
-  nav.appendChild(display);
+  root.appendChild(display);
  
 var series= document.createElement("div");
 series.className = "series";
 rootElem.appendChild(series);
+
+var link = document.createElement("a");
+rootElem.appendChild(link);
+link.className = "link";
+link.setAttribute('href',"https://www.tvmaze.com/");
+link.textContent="Original info from tvmaze";
+console.log(link);
 
 build(filEpisodeList);
 
@@ -111,6 +128,8 @@ searchBox.addEventListener('keyup', event => {
   filEpisodeList = episodeList.filter(el=>el.summary.includes(searchValue));
   series.textContent = "";
   build(filEpisodeList);
+ 
+
 
 });
 
