@@ -1,9 +1,15 @@
 //You can edit ALL of the code here
 function setup() {
-  const allEpisodes = getAllEpisodes();
-  makePageForEpisodes(allEpisodes);
+  // const allEpisodes = getAllEpisodes();
+  // makePageForEpisodes(allEpisodes);
+ 
+  
+  fetch(`https://api.tvmaze.com/shows/527/episodes`)
+  .then(response => response.json())
+  .then(allEpisodes =>makePageForEpisodes(allEpisodes));
 }
-
+const allShows = getAllShows();
+let sortedSllShows = allShows.sort();
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
   rootElem.className = "root";
@@ -11,6 +17,7 @@ function makePageForEpisodes(episodeList) {
   var nav = document.createElement("nav");
   nav.className = "nav";
   rootElem.appendChild(nav);
+  // console.log(allShows[0])
 
   var filEpisodeList = episodeList;
   // create dropdown list
@@ -20,7 +27,29 @@ function makePageForEpisodes(episodeList) {
   var dropDown = document.createElement("SELECT");
   dropDownContainer.appendChild(dropDown);
   dropDown.className="dropDown";
+
+  //show selector
+  // create dropdown list
+  var dropDownShowsContainer = document.createElement("div");
+  nav.appendChild(dropDownShowsContainer);
+  dropDownShowsContainer.className="dropDownShowsContainer";
+  var dropDownShows = document.createElement("SELECT");
+  dropDownContainer.appendChild(dropDownShows);
+  dropDownShows.className="dropDownShows";
+  console.log(sortedSllShows);
+// add shows to selector
+let addShowToSelector = function(show){
+  console.log(show.name);
+  showOption  = document.createElement("option");
+  showOption.text = `${show.name}`;
+  dropDownShows.add(showOption);
+};
+sortedSllShows.forEach(show =>addShowToSelector(show)
   
+  // display.textContent = "";
+  // display.textContent = `showing ${filEpisodeList.length} episodes`;
+);
+// };
  
 // for each stuff
   let build = function(filEpisodeList){

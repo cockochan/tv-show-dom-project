@@ -72,6 +72,11 @@ html, body {
   margin-left:30px;
 
 }
+.dropDownShowsContainer{
+  display: flex;
+  width:30%;
+  margin-left:30px;
+}
 .link{
   color:pink;
   margin:30px;
@@ -84,6 +89,9 @@ html, body {
 }
 }
 .dropDown{
+  width:auto;
+}
+.dropDownShows{
   width:auto;
 }
 
