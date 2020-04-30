@@ -1,9 +1,22 @@
 //You can edit ALL of the code here
 function setup() {
-  const allEpisodes = getAllEpisodes();
-  makePageForEpisodes(allEpisodes);
-}
 
+  
+let episodeList;
+let getAllEpisodes = function(){
+fetch(`https://api.tvmaze.com/shows/82/episodes`)
+.then(function(response) {
+  return response.json();
+})
+.then(function(data) {
+  // Write the code to display the greeting text here
+  return episodeList = data;
+ 
+});
+console.log(episodeList);
+};
+// const allEpisodes = getAllEpisodes();
+makePageForEpisodes(episodeList);
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
   rootElem.className = "root";
@@ -20,7 +33,7 @@ function makePageForEpisodes(episodeList) {
   var dropDown = document.createElement("SELECT");
   dropDownContainer.appendChild(dropDown);
   dropDown.className="dropDown";
-  
+
  
 // for each stuff
   let build = function(filEpisodeList){
@@ -133,5 +146,5 @@ searchBox.addEventListener('keyup', event => {
 
 });
 
-}
+}}
 window.onload = setup;
