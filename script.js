@@ -9,6 +9,13 @@ function setup() {
   .then(allEpisodes =>makePageForEpisodes(allEpisodes));
 }
 const allShows = getAllShows();
+  //   if (x>y){
+  //     return 1;
+  //   } else if (x<y) {
+  //     return -1;
+  //   }
+  //   return 0;
+  // });
 let sortedSllShows = allShows.sort();
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
