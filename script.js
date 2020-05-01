@@ -1,5 +1,6 @@
 //You can edit ALL of the code here
 function setup() {
+<<<<<<< Updated upstream
 
   
 let episodeList;
@@ -17,6 +18,39 @@ console.log(episodeList);
 };
 // const allEpisodes = getAllEpisodes();
 makePageForEpisodes(episodeList);
+=======
+  // const allEpisodes = getAllEpisodes();
+  // makePageForEpisodes(allEpisodes);
+  
+    fetch(`https://api.tvmaze.com/shows/1/episodes`)
+    .then(response => response.json())
+    .then(allEpisodes =>makePageForEpisodes(allEpisodes));
+};
+let refetch = function(showId){
+  
+  fetch(`https://api.tvmaze.com/shows/${showId}/episodes`)
+  .then(response => response.json())
+  .then(allEpisodes =>makePageForEpisodes(allEpisodes));
+};
+const allShows = getAllShows();
+  //   if (x>y){
+  //     return 1;
+  //   } else if (x<y) {
+  //     return -1;
+  //   }
+  //   return 0;
+//   // });
+let sortedAllShows = allShows.sort(function(x,y){
+  if (x.name>y.name){
+        return 1;
+      } else if (x<y) {
+        return -1;
+      }
+      return 0;
+    });
+    
+
+>>>>>>> Stashed changes
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
   rootElem.className = "root";
@@ -34,6 +68,32 @@ function makePageForEpisodes(episodeList) {
   dropDownContainer.appendChild(dropDown);
   dropDown.className="dropDown";
 
+<<<<<<< Updated upstream
+=======
+  //show selector
+  // create dropdown list
+  var dropDownShowsContainer = document.createElement("div");
+  nav.appendChild(dropDownShowsContainer);
+  dropDownShowsContainer.className="dropDownShowsContainer";
+  var dropDownShows = document.createElement("SELECT");
+  dropDownContainer.appendChild(dropDownShows);
+  dropDownShows.className="dropDownShows";
+  // console.log(sortedAllShows);
+ 
+
+// add shows to selector
+let addShowToSelector = function(show){
+  showOption  = document.createElement("option");
+  showOption.text = `${show.name}`;
+  dropDownShows.add(showOption);
+};
+sortedAllShows.forEach(show =>addShowToSelector(show)
+  
+  // display.textContent = "";
+  // display.textContent = `showing ${filEpisodeList.length} episodes`;
+);
+// };
+>>>>>>> Stashed changes
  
 // for each stuff
   let build = function(filEpisodeList){
@@ -123,9 +183,15 @@ rootElem.appendChild(link);
 link.className = "link";
 link.setAttribute('href',"https://www.tvmaze.com/");
 link.textContent="Original info from tvmaze";
-console.log(link);
 
 build(filEpisodeList);
+let prefetch = function(){
+  let showArray = allShows.find(show =>show.name.includes(dropDownShows.value));
+  let showId = showArray.id;
+  refetch(showId);
+  build(filEpisodeList);
+ }
+dropDown.addEventListener("click",prefetch());
 
 let searchBox  = document.createElement("INPUT");
 searchBox.setAttribute("type", "search");
