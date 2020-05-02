@@ -21,7 +21,6 @@ let fetchNow = function(showId){
   .then(allEpisodes =>makePageForEpisodes(allEpisodes));
 };
 let allShows = getAllShows();
-console.log(allShows)
 
   //   if (x>y){
   //     return 1;
@@ -41,9 +40,11 @@ let sortedAllShows = allShows.sort(function(x,y){
     
 
 function makePageForEpisodes(episodeList) {
+  let body = document.getElementById("root");
+  root.innerHTML="";
   const rootElem = document.getElementById("root");
   rootElem.className = "root";
-
+  
   var nav = document.createElement("nav");
   nav.className = "nav";
   rootElem.appendChild(nav);
