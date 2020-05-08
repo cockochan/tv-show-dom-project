@@ -29,10 +29,16 @@ let allShows = getAllShows();
   //   }
   //   return 0;
 //   // });
+console.log(allShows);
+let toLow =() =>{
+allShows = allShows.map(show=>show.name=show.name.toUpperCase());
+return allShows};
+
 let sortedAllShows = allShows.sort(function(x,y){
+ 
   if (x.name>y.name){
         return 1;
-      } else if (x<y) {
+      } else if (x.name<y.name) {
         return -1;
       }
       return 0;
