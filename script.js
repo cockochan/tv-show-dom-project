@@ -76,8 +76,8 @@ function makePageForEpisodes(episodeList) {
   // console.log(sortedAllShows);
   
   let prefetch = function(){
-   let showArray = allShows.find(show =>show.name.includes(dropDownShows.value));
-
+    let showArray = allShows.find(show =>show.name.includes(dropDownShows.value));
+   
    let showId = showArray.id;
    
   fetchNow(showId);
@@ -168,9 +168,19 @@ sortedAllShows.forEach(show =>addShowToSelector(show)
   option.text = `${episCode} - ${element.name}`;
   dropDown.add(option);
   });
+
+let dropEpisodeSelect =() => {
+  console.log(filEpisodeList)
+  dropDownShows.innerText = dropDownShows.value;
+  filEpisodeList = filEpisodeList.find(epis=>epis.episCode.includes(dropDown.value));
+  build(filEpisodeList);
+
+};
+// 
+dropDown.addEventListener("change",dropEpisodeSelect)
   display.textContent = "";
   display.textContent = `showing ${filEpisodeList.length} episodes`;
-
+  
 };
   // show how many episodes are displayed;
   var display = document.createElement("p");
