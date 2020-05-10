@@ -39,7 +39,7 @@ let sortedAllShows = allShows.sort(function(x,y){
 
 function makePageForEpisodes(episodeList) {
   let root = document.getElementById("root");
-  root.innerHTML="";
+  // root.innerHTML="";
   const rootElem = document.getElementById("root");
   rootElem.className = "root";
   
