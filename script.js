@@ -18,7 +18,7 @@ let fetchNow = function(showId,showArray){
   fetch(`https://api.tvmaze.com/shows/${showId}/episodes`)
   .then(response => response.json())
   .then(allEpisodes =>makePageForEpisodes(allEpisodes));
-  // dropDownShows.value=showArray.name;
+  // dropDownShows.innerText=showArray.name;
 };
 let allShows = getAllShows();
 
@@ -166,7 +166,7 @@ sortedAllShows.forEach(show =>addShowToSelector(show));
   element.episCode = option.text;
   
   });
-
+  
 let dropEpisodeSelect =() => {
   
   let thatEpisode = filEpisodeList.find(x=>x.episCode==dropDown.value);
@@ -179,6 +179,7 @@ let dropEpisodeSelect =() => {
   
 
 };
+dropDown.addEventListener("change",dropEpisodeSelect);
 // 
   
 };
