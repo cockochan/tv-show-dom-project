@@ -14,12 +14,7 @@ function setup() {
   .then(allEpisodes =>makePageForEpisodes(allEpisodes));
   
 };
-let fetchNow = function(showId,showArray){
-  fetch(`https://api.tvmaze.com/shows/${showId}/episodes`)
-  .then(response => response.json())
-  .then(allEpisodes =>makePageForEpisodes(allEpisodes));
-  // dropDownShows.innerText=showArray.name;
-};
+
 let allShows = getAllShows();
 
 let toLow =() =>{
@@ -67,15 +62,7 @@ function makePageForEpisodes(episodeList) {
   dropDownShows.className="dropDownShows";
   // console.log(sortedAllShows);
   
-  let prefetch = function(){
-    let showArray = allShows.find(show =>show.name.includes(dropDownShows.value));
-   
-   let showId = showArray.id;
-   
-  fetchNow(showId,showArray);
-  //  build(filEpisodeList);
-  }
-  dropDownShows.addEventListener("change",prefetch);
+ 
 // add shows to selector
 let addShowToSelector = function(show){
 
@@ -91,6 +78,22 @@ sortedAllShows.forEach(show =>addShowToSelector(show));
 // };
  
 // for each stuff
+let prefetch = function(){
+  let showArray = allShows.find(show =>show.name.includes(dropDownShows.value));
+   
+   let showId = showArray.id;
+   
+  fetchNow(showId,showArray);
+  //  build(filEpisodeList);
+  }
+  let fetchNow = function(showId,showArray){
+    fetch(`https://api.tvmaze.com/shows/${showId}/episodes`)
+    .then(response => response.json())
+    .then(allEpisodes =>makePageForEpisodes(allEpisodes));
+    // dropDownShows.innerText=showArray.name;
+    // build(showArray);
+  };
+  dropDownShows.addEventListener("change",prefetch);
   let build = function(filEpisodeList){
     console.log(filEpisodeList)
     filEpisodeList.forEach((element) => {
