@@ -100,14 +100,15 @@ let prefetch = function(){
   
   series.innerHTML="";
   dropDown.innerHTML="";
+}
   // filEpisodeList = allEpisodes;
-   }
+  
   let rebuild =(allEpisodes)=>{
    allEpisodes.forEach(
      el=>makeCode(el)
      );
     
-    build(filEpisodeList);
+    build(allEpisodes);
    
   }
   let fetchNow = function(showId,showArray){
