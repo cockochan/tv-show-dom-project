@@ -34,7 +34,7 @@ let sortedAllShows = allShows.sort(function(x,y){
 
 function makePageForEpisodes(episodeList) {
   let root = document.getElementById("root");
-  // root.innerHTML="";
+  root.innerHTML="";
   const rootElem = document.getElementById("root");
   rootElem.className = "root";
   
@@ -45,20 +45,20 @@ function makePageForEpisodes(episodeList) {
 
   var filEpisodeList = episodeList;
   // create dropdown list
-  var dropDownContainer = document.createElement("div");
-  nav.appendChild(dropDownContainer);
-  dropDownContainer.className="dropDownContainer";
+  // var dropDownContainer = document.createElement("div");
+  // nav.appendChild(dropDownContainer);
+  // dropDownContainer.className="dropDownContainer";
   var dropDown = document.createElement("SELECT");
-  dropDownContainer.appendChild(dropDown);
+  nav.appendChild(dropDown);
   dropDown.className="dropDown";
 
   //show selector
   // create dropdown list
-  var dropDownShowsContainer = document.createElement("div");
-  nav.appendChild(dropDownShowsContainer);
-  dropDownShowsContainer.className="dropDownShowsContainer";
+  // var dropDownShowsContainer = document.createElement("div");
+  // nav.appendChild(dropDownShowsContainer);
+  // dropDownShowsContainer.className="dropDownShowsContainer";
   var dropDownShows = document.createElement("SELECT");
-  dropDownContainer.appendChild(dropDownShows);
+  nav.appendChild(dropDownShows);
   dropDownShows.className="dropDownShows";
   // console.log(sortedAllShows);
   
@@ -76,31 +76,55 @@ sortedAllShows.forEach(show =>addShowToSelector(show));
   // display.textContent = `showing ${filEpisodeList.length} episodes`;
 
 // };
- 
-// for each stuff
+ let showImage;
+
 let prefetch = function(){
-  let showArray = allShows.find(show =>show.name.includes(dropDownShows.value));
-   
+  
+   let showArray = allShows.find(show =>show.name.includes(dropDownShows.value));
    let showId = showArray.id;
+   console.log(showArray);
+   showImage = showArray.image.medium;
    
   fetchNow(showId,showArray);
   //  build(filEpisodeList);
   }
+  function padToTwo(number) {
+    if (number<=9999) { number = ("000"+number).slice(-2); }
+    return number;
+  };
+  let makeCode =(element)=>{
+    let padEpisode = padToTwo(element.number);
+    let padSeason = padToTwo(element.season);
+    let episCode = `S${padSeason}E${padEpisode}`;
+  element.episCode = `${episCode} - ${element.name}`
+  
+  series.innerHTML="";
+  dropDown.innerHTML="";
+  filEpisodeList = allEpisodes;
+   }
+  let rebuild =(allEpisodes)=>{
+   allEpisodes.forEach(
+     el=>makeCode(el)
+     );
+    
+    build(filEpisodeList);
+   
+  }
   let fetchNow = function(showId,showArray){
     fetch(`https://api.tvmaze.com/shows/${showId}/episodes`)
     .then(response => response.json())
-    .then(allEpisodes =>makePageForEpisodes(allEpisodes));
-    // dropDownShows.innerText=showArray.name;
-    // build(showArray);
+    .then(allEpisodes =>rebuild(allEpisodes));
+    
+    //  build(showArray);
   };
   dropDownShows.addEventListener("change",prefetch);
   let build = function(filEpisodeList){
-    console.log(filEpisodeList)
+  console.log(filEpisodeList.length) 
     filEpisodeList.forEach((element) => {
     var tile = document.createElement("section");
     tile.className = "tile";
     series.appendChild(tile);
-  
+  // console.log(element);
 
   // let filteredEpisodeList =  episodeList;
 
@@ -108,8 +132,12 @@ let prefetch = function(){
     var season = document.createElement("h1");
     tile.appendChild(season);
     season.className = "season";
+    if(element.hasOwnProperty(season)){
     season.textContent = `SEASON:${element.season}`;
-
+    }
+    else(
+      season.textContent = "none"
+    );
      let tileHead =  document.createElement("div");
      tileHead.className = "tileHead";
      tile.appendChild(tileHead);
@@ -145,9 +173,15 @@ let prefetch = function(){
 
     var img = document.createElement("img");
     tile.appendChild(img);
+    if(element.hasOwnPropertyimage,img){
     img.src = element.image.medium;
     img.className = "img";
+    }
+    else(img.src = show.img); 
+
     //generate episode code
+  let generateEpisodeCode =(element)=>{
+    
    function padToTwo(number) {
       if (number<=9999) { number = ("000"+number).slice(-2); }
       return number;
@@ -167,24 +201,26 @@ let prefetch = function(){
   option.text = `${episCode} - ${element.name}`;
   dropDown.add(option);
   element.episCode = option.text;
-  
-  });
+    };
+    generateEpisodeCode(element);
+ 
   
 let dropEpisodeSelect =() => {
+  // console.log(episCode)
   
   let thatEpisode = filEpisodeList.find(x=>x.episCode==dropDown.value);
   filEpisodeList =[];
   filEpisodeList.push(thatEpisode);
 
-  console.log(thatEpisode);
+  // console.log(thatEpisode);
   series.textContent = "";
   build(filEpisodeList);
-  
-
 };
+
+
 dropDown.addEventListener("change",dropEpisodeSelect);
 // 
-  
+});
 };
 
   // show how many episodes are displayed;

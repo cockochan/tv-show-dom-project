@@ -95,6 +95,7 @@ html, body {
   padding:30px;
   justify-content:space-between;
   align-items: center;
+  align-content: center;
   
 }
 .display{
