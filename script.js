@@ -100,7 +100,7 @@ let prefetch = function(){
   
   series.innerHTML="";
   dropDown.innerHTML="";
-  filEpisodeList = allEpisodes;
+  // filEpisodeList = allEpisodes;
    }
   let rebuild =(allEpisodes)=>{
    allEpisodes.forEach(
